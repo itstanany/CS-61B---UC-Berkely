@@ -3,8 +3,11 @@ package proj1.deque;
 import java.util.Iterator;
 
 public class LinkedListDeque<T> {
-    public LinkedListDeque() {
-
+    T item;
+    LinkedListDeque<T> next;
+    public LinkedListDeque(T x) {
+        item = x;
+        next = null;
     }
     public T getRecursive(int index) {
         return null;
