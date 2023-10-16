@@ -3,8 +3,8 @@ package proj1.deque;
 import java.util.Iterator;
 
 public class LinkedListDeque<T> {
-    T item;
-    LinkedListDeque<T> next;
+    private T item;
+    private LinkedListDeque<T> next;
     public LinkedListDeque(T x) {
         item = x;
         next = null;
