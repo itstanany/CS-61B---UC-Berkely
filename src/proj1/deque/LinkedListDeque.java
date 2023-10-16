@@ -9,10 +9,16 @@ public class LinkedListDeque<T> {
         item = x;
         next = null;
     }
+    public LinkedListDeque(T i, LinkedListDeque<T> n) {
+        item = i;
+        next = n;
+    }
     public T getRecursive(int index) {
         return null;
     }
-    public void addFirst(T item) {
+    public void addFirst(T x) {
+        next = new LinkedListDeque<T>(item, next);
+        item = x;
     }
 
     public void addLast(T item) {
