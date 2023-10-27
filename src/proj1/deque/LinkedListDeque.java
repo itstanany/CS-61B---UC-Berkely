@@ -3,22 +3,25 @@ package proj1.deque;
 import java.util.Iterator;
 
 public class LinkedListDeque<T> {
-    private T item;
-    private LinkedListDeque<T> next;
+    private static class Node<T> {
+        T item;
+        Node<T> next;
+
+        Node(T i, Node<T> n) {
+            item = i;
+            next = n;
+        }
+    }
+    private Node<T> first;
     public LinkedListDeque(T x) {
-        item = x;
-        next = null;
+        first = new Node(x, null);
     }
-    public LinkedListDeque(T i, LinkedListDeque<T> n) {
-        item = i;
-        next = n;
-    }
+
     public T getRecursive(int index) {
         return null;
     }
     public void addFirst(T x) {
-        next = new LinkedListDeque<T>(item, next);
-        item = x;
+        first = new Node<T>(x, first);
     }
 
     public void addLast(T item) {
