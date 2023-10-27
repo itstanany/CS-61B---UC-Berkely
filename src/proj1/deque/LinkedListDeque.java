@@ -14,9 +14,11 @@ public class LinkedListDeque<T> {
     }
     private Node<T> first;
     private Node<T> last;
+    private int size;
     public LinkedListDeque(T x) {
         first = new Node(x, null);
         last = first;
+        size = 1;
     }
 
     public T getRecursive(int index) {
@@ -24,12 +26,14 @@ public class LinkedListDeque<T> {
     }
     public void addFirst(T x) {
         first = new Node<T>(x, first);
+        size += 1;
     }
 
     public void addLast(T item) {
         Node<T> newLast = new Node<T>(item, null);
         last.next = newLast;
         last = newLast;
+        size += 1;
         // Course Instructor implementation
 //        Node<T> p = first;
 //        while (p.next != null) {
@@ -43,15 +47,7 @@ public class LinkedListDeque<T> {
     }
 
     public int size() {
-        return size(first);
-    }
-
-    private int size(Node<T> node) {
-        Node<T> nextNode = node.next;
-        // base case -- next == null
-        if(nextNode == null) return 1;
-        // return--recursive| 1 + calculate size
-        return 1 + size(nextNode);
+        return size;
     }
 
     public void printDeque() {
