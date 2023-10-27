@@ -12,12 +12,15 @@ public class LinkedListDeque<T> {
             next = n;
         }
     }
-    private Node<T> first;
-    private Node<T> last;
+    private Node<T> sentinel;
+//    private Node<T> last;
     private int size;
     public LinkedListDeque(T x) {
-        first = new Node(x, null);
-        last = first;
+//        first = new Node(x, null);
+//        item value \\here 101\\ is not important and just a placeholder
+        sentinel = new Node(101, null);
+        sentinel.next = new Node(x, sentinel.next);
+//        last = sentinel;
         size = 1;
     }
 
@@ -25,21 +28,22 @@ public class LinkedListDeque<T> {
         return null;
     }
     public void addFirst(T x) {
-        first = new Node<T>(x, first);
+//        first = new Node<T>(x, first);
+        sentinel.next = new Node(x, sentinel.next);
         size += 1;
     }
 
     public void addLast(T item) {
-        Node<T> newLast = new Node<T>(item, null);
-        last.next = newLast;
-        last = newLast;
+//        Node<T> newLast = new Node<T>(item, null);
+//        last.next = newLast;
+//        last = newLast;
         size += 1;
         // Course Instructor implementation
-//        Node<T> p = first;
-//        while (p.next != null) {
-//            p = p.next;
-//        }
-//        p.next = new Node<T>(item, null);
+        Node<T> p = sentinel;
+        while (p.next != null) {
+            p = p.next;
+        }
+        p.next = new Node<T>(item, null);
     }
 
     public boolean isEmpty() {
