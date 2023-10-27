@@ -43,15 +43,15 @@ public class LinkedListDeque<T> {
     }
 
     public int size() {
-        return calcSize(first);
+        return size(first);
     }
 
-    private int calcSize(Node<T> node) {
+    private int size(Node<T> node) {
         Node<T> nextNode = node.next;
         // base case -- next == null
         if(nextNode == null) return 1;
         // return--recursive| 1 + calculate size
-        return 1 + calcSize(nextNode);
+        return 1 + size(nextNode);
     }
 
     public void printDeque() {
