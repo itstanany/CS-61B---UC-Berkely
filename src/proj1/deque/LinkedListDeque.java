@@ -13,8 +13,10 @@ public class LinkedListDeque<T> {
         }
     }
     private Node<T> first;
+    private Node<T> last;
     public LinkedListDeque(T x) {
         first = new Node(x, null);
+        last = first;
     }
 
     public T getRecursive(int index) {
@@ -25,6 +27,10 @@ public class LinkedListDeque<T> {
     }
 
     public void addLast(T item) {
+        Node<T> newLast = new Node<T>(item, null);
+        last.next = newLast;
+        last = newLast;
+
     }
 
     public boolean isEmpty() {
