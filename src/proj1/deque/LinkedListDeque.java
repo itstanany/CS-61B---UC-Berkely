@@ -30,7 +30,12 @@ public class LinkedListDeque<T> {
         Node<T> newLast = new Node<T>(item, null);
         last.next = newLast;
         last = newLast;
-
+        // Course Instructor implementation
+//        Node<T> p = first;
+//        while (p.next != null) {
+//            p = p.next;
+//        }
+//        p.next = new Node<T>(item, null);
     }
 
     public boolean isEmpty() {
