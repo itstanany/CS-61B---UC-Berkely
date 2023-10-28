@@ -24,6 +24,10 @@ public class LinkedListDeque<T> {
         size = 1;
     }
 
+    public LinkedListDeque() {
+        sentinel = new Node(101, null);
+    }
+
     public T getRecursive(int index) {
         return null;
     }
