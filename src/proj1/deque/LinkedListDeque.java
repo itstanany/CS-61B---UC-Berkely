@@ -5,49 +5,51 @@ import java.util.Iterator;
 public class LinkedListDeque<T> {
     private static class Node<T> {
         T item;
+        Node<T> prev;
         Node<T> next;
 
-        Node(T i, Node<T> n) {
+        Node(T i, Node<T> prev, Node<T> next) {
             item = i;
-            next = n;
+            this.prev = prev;
+            this.next = next;
         }
     }
-    private Node<T> sentinel;
+    private Node<T> sentinelFront;
+    private Node<T> sentinelBack;
 //    private Node<T> last;
     private int size;
     public LinkedListDeque(T x) {
-//        first = new Node(x, null);
 //        item value \\here 101\\ is not important and just a placeholder
-        sentinel = new Node(101, null);
-        sentinel.next = new Node(x, sentinel.next);
-//        last = sentinel;
+        sentinelFront = new Node(1, null, null);
+        sentinelBack = new Node(0, null, null);
+        Node<T> newNode = new Node<>(x, sentinelFront, sentinelBack);
+        sentinelFront.next = newNode;
+        sentinelBack.prev = newNode;
         size = 1;
     }
 
     public LinkedListDeque() {
-        sentinel = new Node(101, null);
+        sentinelFront = new Node(101, null, null);
+        sentinelBack = new Node(101, null, null);
+        sentinelFront.next = sentinelBack;
+        sentinelBack.prev = sentinelFront;
     }
 
     public T getRecursive(int index) {
         return null;
     }
-    public void addFirst(T x) {
-//        first = new Node<T>(x, first);
-        sentinel.next = new Node(x, sentinel.next);
+    public void addFirst(T item) {
+        Node<T> newNode = new Node<>(item, sentinelFront.next.prev, sentinelFront.next);
+        sentinelFront.next.prev = newNode;
+        sentinelFront.next = newNode;
         size += 1;
     }
 
     public void addLast(T item) {
-//        Node<T> newLast = new Node<T>(item, null);
-//        last.next = newLast;
-//        last = newLast;
+        Node<T> newNode = new Node<>(item, sentinelBack.prev, sentinelBack.prev.next);
+        sentinelBack.prev.next = newNode;
+        sentinelBack.prev = newNode;
         size += 1;
-        // Course Instructor implementation
-        Node<T> p = sentinel;
-        while (p.next != null) {
-            p = p.next;
-        }
-        p.next = new Node<T>(item, null);
     }
 
     public boolean isEmpty() {
