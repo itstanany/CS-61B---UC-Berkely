@@ -53,7 +53,7 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty() {
-        return false;
+        return size < 1;
     }
 
     public int size() {
