@@ -1,15 +1,28 @@
 package proj1.deque;
 
+import javax.lang.model.type.ArrayType;
+import java.sql.Array;
 import java.util.Iterator;
 
+//         0 1 2 3
+// items: [2 5 6 -88 0 0 0 0 0 0 0 0 0 0 0]
+// size: 4
+
+/* Invariants
+    * add last is item[size]
+    * get last is item[size -1]
+    * size: the number of items in the last should be "size"
+ */
 public class ArrayDeque<T> {
     private int size;
-    public ArrayDeque(T x) {
-
+    int[] items = new int[16];
+    public ArrayDeque(int x) {
+        items[0] = x;
         size = 1;
     }
 
     public ArrayDeque() {
+        size = 0;
 
     }
 
@@ -21,8 +34,8 @@ public class ArrayDeque<T> {
         size += 1;
     }
 
-    public void addLast(T item) {
-
+    public void addLast(int item) {
+        items[size] = item;
         size += 1;
     }
 
