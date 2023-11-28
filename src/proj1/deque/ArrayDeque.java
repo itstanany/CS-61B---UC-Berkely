@@ -26,9 +26,6 @@ public class ArrayDeque<T> {
 
     }
 
-    public T getRecursive(int index) {
-        return null;
-    }
     public void addFirst(T item) {
 
         size += 1;
