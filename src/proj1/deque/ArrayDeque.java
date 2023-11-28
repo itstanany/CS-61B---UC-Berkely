@@ -15,8 +15,8 @@ import java.util.Iterator;
  */
 public class ArrayDeque<T> {
     private int size;
-    int[] items = new int[16];
-    public ArrayDeque(int x) {
+    T[] items = (T[]) new Object[50];
+    public ArrayDeque(T x) {
         items[0] = x;
         size = 1;
     }
@@ -34,9 +34,18 @@ public class ArrayDeque<T> {
         size += 1;
     }
 
-    public void addLast(int item) {
+    public void addLast(T item) {
+        if (size >= items.length) {
+            resizeArray(size * 2);
+        }
         items[size] = item;
         size += 1;
+    }
+
+    private void resizeArray(int capacity) {
+        T[] newArr = (T []) new Object[capacity];
+        System.arraycopy(items, 0, newArr, 0, size);
+        items = newArr;
     }
 
     public boolean isEmpty() {
@@ -53,7 +62,15 @@ public class ArrayDeque<T> {
         return null;
     }
     public T removeLast() {
-        return null;
+        if ( (float) size / items.length < 0.25) {
+            resizeArray(items.length/2);
+        }
+        T deletedItem = items[size-1];
+        // null not even integer because it is a generic ++ it is better to remove reference to deleted items
+        // which may be a large object
+        items[size-1] = null;
+        size -= 1;
+        return deletedItem;
     }
     public T get(int index) {
         return null;
