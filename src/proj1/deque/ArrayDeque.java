@@ -2,7 +2,9 @@ package proj1.deque;
 
 import javax.lang.model.type.ArrayType;
 import java.sql.Array;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Objects;
 
 //         0 1 2 3
 // items: [2 5 6 -88 0 0 0 0 0 0 0 0 0 0 0]
@@ -14,39 +16,43 @@ import java.util.Iterator;
     * size: the number of items in the last should be "size"
  */
 public class ArrayDeque<T> {
+    @SuppressWarnings("unchecked")
+    private T[] items = (T[]) new Object[8];
     private int size;
-    T[] items = (T[]) new Object[50];
-    public ArrayDeque(T x) {
-        items[0] = x;
-        size = 1;
-    }
+    private int nextFirst;
+    private int nextLast;
 
     public ArrayDeque() {
         size = 0;
-
+        nextFirst = 3;
+        nextLast = 4;
     }
 
+    public ArrayDeque(T item) {
+        items[3] = item;
+        size = 1;
+        nextFirst = 2;
+        nextLast = 4;
+    }
+    boolean isEmpty() {
+        return size() == 0;
+    }
     public void addFirst(T item) {
-
+        items[nextFirst] = item;
         size += 1;
+        nextFirst -= 1;
+        if (nextFirst == -1) {
+            resize(size * 2);
+        }
     }
 
     public void addLast(T item) {
-        if (size >= items.length) {
-            resizeArray(size * 2);
-        }
-        items[size] = item;
+        items[nextLast] = item;
         size += 1;
-    }
-
-    private void resizeArray(int capacity) {
-        T[] newArr = (T []) new Object[capacity];
-        System.arraycopy(items, 0, newArr, 0, size);
-        items = newArr;
-    }
-
-    public boolean isEmpty() {
-        return size < 1;
+        nextLast += 1;
+        if (nextLast == items.length) {
+            resize(size * 2);
+        }
     }
 
     public int size() {
@@ -54,26 +60,79 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-    }
-    public T removeFirst() {
-        return null;
-    }
-    public T removeLast() {
-        if ( (float) size / items.length < 0.25) {
-            resizeArray(items.length/2);
-        }
-        T deletedItem = items[size-1];
-        // null not even integer because it is a generic ++ it is better to remove reference to deleted items
-        // which may be a large object
-        items[size-1] = null;
-        size -= 1;
-        return deletedItem;
-    }
-    public T get(int index) {
-        return null;
+        System.out.println(String.join(" ", Arrays.stream(items).filter(Objects::nonNull).map(T::toString).toArray(String[]::new)));
     }
 
+    public T removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        nextFirst += 1;
+        T item = items[nextFirst];
+        items[nextFirst] = null;
+        size -= 1;
+        shrinkSize();
+        return item;
+    }
+
+    public T removeLast() {
+        if (isEmpty()) {
+            return null;
+        }
+        nextLast -= 1;
+        T item = items[nextLast];
+        items[nextLast] = null;
+        size -= 1;
+        shrinkSize();
+        return item;
+    }
+
+    private void shrinkSize() {
+        if (isEmpty()) {
+            resize(8);
+        } else if (items.length / 4 > size && size >= 4) {
+            resize(size * 2);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void resize(int s) {
+        T[] newItems = (T[]) new Object[s];
+        int firstPos = Math.abs(s - size) / 2;
+        System.arraycopy(items, nextFirst + 1, newItems, firstPos, size);
+        items = newItems;
+        nextFirst = firstPos - 1;
+        nextLast = firstPos + size;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index > size - 1) {
+            return null;
+        }
+        int itemIndex = nextFirst + 1 + index;
+        return items[itemIndex];
+    }
+
+
     public boolean equals(Object o) {
-        return false;
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof ArrayDeque)) {
+            return false;
+        }
+        ArrayDeque<?> ad = (ArrayDeque<?>) o;
+        if (ad.size() != size) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (ad.get(i) != get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
