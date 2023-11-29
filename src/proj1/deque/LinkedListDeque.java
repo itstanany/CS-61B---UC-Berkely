@@ -42,9 +42,9 @@ public class LinkedListDeque<T> implements Iterable<T>{
         return helperGetRecursive(index, sentinelFront);
     }
 
-    private T helperGetRecursive(int index, Node currentNode) {
+    private T helperGetRecursive(int index, Node<T> currentNode) {
         if(index == 0) {
-            return (T) currentNode.next.item;
+            return currentNode.next.item;
         }
         return helperGetRecursive(index-1, currentNode.next);
     }
