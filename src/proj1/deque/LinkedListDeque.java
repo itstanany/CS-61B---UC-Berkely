@@ -2,7 +2,7 @@ package proj1.deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Iterable{
     private static class Node<T> {
         T item;
         Node<T> prev;
@@ -71,10 +71,29 @@ public class LinkedListDeque<T> {
     public T get(int index) {
         return null;
     }
+    @Override
     public Iterator<T> iterator() {
-        return null;
+        return new IterableLinkedListDeque();
     }
     public boolean equals(Object o) {
         return false;
+    }
+
+    private class IterableLinkedListDeque implements Iterator<T>{
+        private int iteratorPos;
+        public  IterableLinkedListDeque() {
+         iteratorPos = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return iteratorPos < size;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = get(iteratorPos);
+            iteratorPos += 1;
+            return returnItem;
+        }
     }
 }
