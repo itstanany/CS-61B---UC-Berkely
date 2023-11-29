@@ -79,7 +79,17 @@ public class LinkedListDeque<T> implements Iterable<T>{
         return null;
     }
     public T get(int index) {
-        return null;
+        if (index < 0 || index > size - 1) {
+            return null;
+        }
+        Node<T> currentNode = sentinelFront.next;
+        for (int i = 0; i < size; i++) {
+            if (i == index) {
+                return currentNode.item;
+            }
+            currentNode = currentNode.next;
+        }
+        throw new AssertionError();
     }
     @Override
     public Iterator<T> iterator() {
