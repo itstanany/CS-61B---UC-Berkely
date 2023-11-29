@@ -36,6 +36,9 @@ public class LinkedListDeque<T> implements Iterable<T>{
     }
 
     public T getRecursive(int index) {
+        if (index < 0 || index > size - 1) {
+            return null;
+        }
         return helperGetRecursive(index, sentinelFront);
     }
 
