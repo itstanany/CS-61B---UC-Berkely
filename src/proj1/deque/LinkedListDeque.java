@@ -36,7 +36,14 @@ public class LinkedListDeque<T> implements Iterable{
     }
 
     public T getRecursive(int index) {
-        return null;
+        return helperGetRecursive(index, sentinelFront);
+    }
+
+    private T helperGetRecursive(int index, Node currentNode) {
+        if(index == 0) {
+            return (T) currentNode.next.item;
+        }
+        return helperGetRecursive(index-1, currentNode.next);
     }
     public void addFirst(T item) {
         Node<T> newNode = new Node<>(item, sentinelFront.next.prev, sentinelFront.next);
@@ -91,7 +98,7 @@ public class LinkedListDeque<T> implements Iterable{
 
         @Override
         public T next() {
-            T returnItem = get(iteratorPos);
+            T returnItem = getRecursive(iteratorPos);
             iteratorPos += 1;
             return returnItem;
         }
