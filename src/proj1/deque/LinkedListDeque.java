@@ -2,7 +2,7 @@ package proj1.deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Iterable{
+public class LinkedListDeque<T> implements Iterable<T>{
     private static class Node<T> {
         T item;
         Node<T> prev;
