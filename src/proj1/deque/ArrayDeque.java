@@ -15,7 +15,7 @@ import java.util.Objects;
     * get last is item[size -1]
     * size: the number of items in the last should be "size"
  */
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Iterable<T>{
     @SuppressWarnings("unchecked")
     private T[] items = (T[]) new Object[8];
     private int size;
@@ -134,5 +134,26 @@ public class ArrayDeque<T> {
             }
         }
         return true;
+    }
+
+    public Iterator<T> iterator() {
+        return new ArrayDequeIterator();
+    }
+    private class ArrayDequeIterator implements Iterator<T> {
+        private int index;
+
+        ArrayDequeIterator() {
+            index = 0;
+        }
+
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        public T next() {
+            T item = get(index);
+            index += 1;
+            return item;
+        }
     }
 }
