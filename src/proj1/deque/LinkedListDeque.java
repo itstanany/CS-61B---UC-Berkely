@@ -83,7 +83,17 @@ public class LinkedListDeque<T> implements Iterable<T>{
         return item;
     }
     public T removeLast() {
-        return null;
+        if (isEmpty()) {
+            return null;
+        }
+        T item = sentinelBack.prev.item;
+        Node<T> newLast = sentinelBack.prev.prev;
+        sentinelBack.prev.next = null;
+        sentinelBack.prev.prev = null;
+        sentinelBack.prev = newLast;
+        newLast.next = sentinelBack;
+        size -= 1;
+        return item;
     }
     public T get(int index) {
         if (index < 0 || index > size - 1) {
