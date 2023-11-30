@@ -71,6 +71,16 @@ public class LinkedListDeque<T> implements Iterable<T>{
     }
 
     public void printDeque() {
+        String[] items = new String[size];
+        Node<T> p = sentinelFront.next;
+        if (p.next == null) {
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            items[i] = p.item.toString();
+            p = p.next;
+        }
+        System.out.println(String.join(" ", items));
     }
     public T removeFirst() {
         if (isEmpty()) {
