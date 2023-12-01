@@ -117,8 +117,23 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T>{
     public Iterator<T> iterator() {
         return new IterableLinkedListDeque();
     }
-    public boolean equals(Object o) {
-        return false;
+    public boolean equals(Deque<T> o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        Deque<T> ad = (Deque<T>) o;
+        if (ad.size() != size) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (ad.get(i) != get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private class IterableLinkedListDeque implements Iterator<T>{
