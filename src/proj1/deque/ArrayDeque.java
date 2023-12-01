@@ -15,7 +15,7 @@ import java.util.Objects;
     * get last is item[size -1]
     * size: the number of items in the last should be "size"
  */
-public class ArrayDeque<T> implements Iterable<T>{
+public class ArrayDeque<T> implements Iterable<T>, Deque<T>{
     @SuppressWarnings("unchecked")
     private T[] items = (T[]) new Object[8];
     private int size;
@@ -33,9 +33,6 @@ public class ArrayDeque<T> implements Iterable<T>{
         size = 1;
         nextFirst = 2;
         nextLast = 4;
-    }
-    boolean isEmpty() {
-        return size() == 0;
     }
     public void addFirst(T item) {
         items[nextFirst] = item;
