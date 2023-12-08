@@ -47,7 +47,8 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      *  new TimeSeries (does not modify this TimeSeries). */
     public TimeSeries plus(TimeSeries ts) {
         TimeSeries returnTS = new TimeSeries();
-        List<Integer> allYears = years();
+        Set<Integer> allYears = new TreeSet<>();
+        allYears.addAll(this.years());
         allYears.addAll(ts.years());
         for (int year: allYears) {
             Double thisYearData = this.get(year);
