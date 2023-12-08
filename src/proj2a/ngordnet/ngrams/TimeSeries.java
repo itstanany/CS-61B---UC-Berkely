@@ -1,5 +1,7 @@
 package proj2a.ngordnet.ngrams;
 
+import edu.princeton.cs.algs4.In;
+
 import java.util.*;
 
 /** An object for mapping a year number (e.g. 1996) to numerical data. Provides
@@ -44,7 +46,21 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      *  each year, sum the data from this TimeSeries with the data from TS. Should return a
      *  new TimeSeries (does not modify this TimeSeries). */
     public TimeSeries plus(TimeSeries ts) {
-        return null;
+        TimeSeries returnTS = new TimeSeries();
+        List<Integer> allYears = years();
+        allYears.addAll(ts.years());
+        for (int year: allYears) {
+            Double thisYearData = this.get(year);
+            Double otherYearData = ts.get(year);
+            if (thisYearData == null) {
+                returnTS.put(year, otherYearData);
+            } else if (otherYearData == null) {
+                returnTS.put(year, thisYearData);
+            } else {
+                returnTS.put(year, thisYearData + otherYearData);
+            }
+        };
+        return returnTS;
     }
 
      /** Returns the quotient of the value for each year this TimeSeries divided by the
