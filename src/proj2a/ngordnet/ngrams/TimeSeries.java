@@ -69,6 +69,17 @@ public class TimeSeries extends TreeMap<Integer, Double> {
       *  throw an IllegalArgumentException. If TS has a year that is not in this TimeSeries, ignore it.
       *  Should return a new TimeSeries (does not modify this TimeSeries). */
      public TimeSeries dividedBy(TimeSeries ts) {
-        return null;
+         TimeSeries newTS = new TimeSeries();
+         List<Integer> thisYears = this.years();
+         for (int i: thisYears) {
+             Double thisData = this.get(i);
+             Double tsData = ts.get(i);
+             if (tsData == null) {
+                 throw new IllegalArgumentException(String.format("Missing Year %2d", i));
+             }
+             newTS.put(i, thisData/tsData);
+         }
+
+        return newTS;
     }
 }
