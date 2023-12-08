@@ -23,7 +23,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
 
     /** Returns all years for this TimeSeries (in any order). */
     public List<Integer> years() {
-        return null;
+        List<Integer> yearsList = new ArrayList();
+        for (Integer i: this.keySet()) {
+            yearsList.add(i);
+        }
+        return yearsList;
     }
 
     /** Returns all data for this TimeSeries (in any order).
