@@ -12,6 +12,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     /** Constructs a new empty TimeSeries. */
     public TimeSeries() {
         super();
+        this.clear();
     }
 
     /** Creates a copy of TS, but only between STARTYEAR and ENDYEAR,
@@ -19,7 +20,10 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
         for (int i = startYear; i <= endYear; i++) {
-            ts.put(i, 0.0);
+            Double yearData = ts.get(i);
+            if (yearData != null) {
+                this.put(i, yearData);
+            }
         }
     }
 
