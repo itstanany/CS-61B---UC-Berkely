@@ -29,7 +29,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     /** Returns all data for this TimeSeries (in any order).
      *  Must be in the same order as years(). */
     public List<Double> data() {
-        return null;
+        List<Double> dataList = new ArrayList<>();
+        for (Double i: this.values()) {
+            dataList.add(i);
+        }
+        return dataList;
     }
 
     /** Returns the yearwise sum of this TimeSeries with the given TS. In other words, for
