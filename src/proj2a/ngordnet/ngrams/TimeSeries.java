@@ -16,6 +16,9 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      *  inclusive of both end points. */
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
+        for (int i = startYear; i <= endYear; i++) {
+            ts.put(i, 0.0);
+        }
     }
 
     /** Returns all years for this TimeSeries (in any order). */
