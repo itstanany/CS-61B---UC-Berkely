@@ -1,6 +1,10 @@
 package proj2a.ngordnet.ngrams;
 
+import edu.princeton.cs.introcs.In;
+
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /** An object that provides utility methods for making queries on the
  *  Google NGrams dataset (or a subset thereof).
@@ -12,8 +16,36 @@ import java.util.Collection;
  *  @author Josh Hug
  */
 public class NGramMap {
+    // map of words with record of thw word and TimeSeries
+    Map<String, TimeSeries> wordInYears = new HashMap<String, TimeSeries>();
+    TimeSeries totalCount = new TimeSeries();
     /** Constructs an NGramMap from WORDSFILENAME and COUNTSFILENAME. */
     public NGramMap(String wordsFilename, String countsFilename) {
+        In words = new In(wordsFilename);
+        String line, word;
+        String[] tokens;
+        Integer year;
+        Double count;
+        while (words.hasNextLine()) {
+            line = words.readLine();
+            tokens = line.split("[\t]+");
+            word = tokens[0];
+            year = Integer.parseInt(tokens[1]);
+            count = Double.parseDouble(tokens[2]);
+            if (wordInYears.containsKey(word)) {
+                wordInYears.get(word).put(year, count);
+            } else {
+                TimeSeries ts = new TimeSeries();
+                ts.put(year, count);
+                wordInYears.put(word, ts);
+            }
+        }
+        In wordCounts = new In(countsFilename);
+        while (wordCounts.hasNextLine()) {
+            line = wordCounts.readLine();
+            tokens = line.split("[,]+");
+            totalCount.put(Integer.parseInt(tokens[0]), Double.parseDouble(tokens[1]));
+        }
     }
 
     /** Provides the history of WORD. The returned TimeSeries should be a copy,
