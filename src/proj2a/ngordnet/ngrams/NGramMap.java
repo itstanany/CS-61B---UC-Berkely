@@ -100,7 +100,7 @@ public class NGramMap {
      *  this time frame, ignore it rather than throwing an exception. */
     public TimeSeries summedWeightHistory(Collection<String> words,
                               int startYear, int endYear) {
-        return null;
+        return new TimeSeries(summedWeightHistory(words), startYear, endYear);
     }
 
 
