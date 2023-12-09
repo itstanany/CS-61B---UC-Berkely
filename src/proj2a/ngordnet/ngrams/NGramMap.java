@@ -81,7 +81,7 @@ public class NGramMap {
     /** Provides a TimeSeries containing the relative frequency per year of WORD between STARTYEAR
      *  and ENDYEAR, inclusive of both ends. */
     public TimeSeries weightHistory(String word, int startYear, int endYear) {
-        return null;
+        return countHistory(word, startYear, endYear).dividedBy(totalCount);
     }
 
     /** Returns the summed relative frequency per year of all words in WORDS. */
