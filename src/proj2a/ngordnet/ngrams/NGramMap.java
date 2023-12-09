@@ -62,7 +62,8 @@ public class NGramMap {
      *  changes made to the object returned by this function should not also affect the
      *  NGramMap. This is also known as a "defensive copy". */
     public TimeSeries countHistory(String word, int startYear, int endYear) {
-        return null;
+        TimeSeries originalTS = wordInYears.get(word);
+        return new TimeSeries(originalTS, startYear, endYear);
     }
 
     /** Returns a defensive copy of the total number of words recorded per year in all volumes. */
