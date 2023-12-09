@@ -4,6 +4,7 @@ import edu.princeton.cs.introcs.In;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** An object that provides utility methods for making queries on the
@@ -74,7 +75,7 @@ public class NGramMap {
     /** Provides a TimeSeries containing the relative frequency per year of WORD compared to
      *  all words recorded in that year. */
     public TimeSeries weightHistory(String word) {
-        return null;
+        return countHistory(word).dividedBy(totalCount);
     }
 
     /** Provides a TimeSeries containing the relative frequency per year of WORD between STARTYEAR
