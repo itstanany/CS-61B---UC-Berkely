@@ -8,14 +8,14 @@ public class Main {
         HugNgordnetServer hns = new HugNgordnetServer();
 
 
-        String wordFile = "./data/ngrams/top_14377_words.csv";
-        String countFile = "./data/ngrams/total_counts.csv";
+        String wordFile = "src/proj2a/data/ngrams/top_14377_words.csv";
+        String countFile = "src/proj2a/data/ngrams/total_counts.csv";
         NGramMap ngm = new NGramMap(wordFile, countFile);
 
 
 
         hns.startUp();
-        hns.register("history", new DummyHistoryHandler());
-        hns.register("historytext", new DummyHistoryTextHandler());
+        hns.register("history", new HistoryHandler(ngm));
+        hns.register("historytext", new HistoryTextHandler(ngm));
     }
 }
