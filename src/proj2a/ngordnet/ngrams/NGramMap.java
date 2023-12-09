@@ -53,7 +53,8 @@ public class NGramMap {
      *  to the object returned by this function should not also affect the
      *  NGramMap. This is also known as a "defensive copy". */
     public TimeSeries countHistory(String word) {
-        return null;
+        TimeSeries originalTS = wordInYears.get(word);
+        return new TimeSeries(originalTS, originalTS.firstKey(), originalTS.lastKey());
     }
 
     /** Provides the history of WORD between STARTYEAR and ENDYEAR, inclusive of both ends. The
