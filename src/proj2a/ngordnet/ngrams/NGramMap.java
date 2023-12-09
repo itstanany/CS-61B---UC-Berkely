@@ -86,7 +86,13 @@ public class NGramMap {
 
     /** Returns the summed relative frequency per year of all words in WORDS. */
     public TimeSeries summedWeightHistory(Collection<String> words) {
-        return null;
+        TimeSeries sumTS = new TimeSeries();
+        for (String word: words) {
+            if (countHistory(word) != null) {
+                sumTS = sumTS.plus(weightHistory(word));
+            }
+        }
+        return sumTS;
     }
 
     /** Provides the summed relative frequency per year of all words in WORDS
