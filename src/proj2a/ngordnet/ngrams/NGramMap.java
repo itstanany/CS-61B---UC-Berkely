@@ -68,7 +68,7 @@ public class NGramMap {
 
     /** Returns a defensive copy of the total number of words recorded per year in all volumes. */
     public TimeSeries totalCountHistory() {
-        return null;
+        return new TimeSeries(totalCount, totalCount.firstKey(), totalCount.lastKey());
     }
 
     /** Provides a TimeSeries containing the relative frequency per year of WORD compared to
