@@ -1,8 +1,8 @@
-package ngordnet.main;
+package proj2b.ngordnet.main;
 
 import ngordnet.ngrams.NGramMap;
 import ngordnet.ngrams.TimeSeries;
-import ngordnet.plotting.Plotter;
+import proj2b.ngordnet.plotting.Plotter;
 import org.knowm.xchart.XYChart;
 
 import java.util.ArrayList;

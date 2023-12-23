@@ -1,4 +1,4 @@
-package ngordnet.hugbrowsermagic;
+package proj2b.ngordnet.hugbrowsermagic;
 
 import java.util.List;
 

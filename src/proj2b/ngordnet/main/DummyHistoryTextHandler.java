@@ -1,7 +1,7 @@
 package ngordnet.main;
 
-import ngordnet.hugbrowsermagic.NgordnetQuery;
-import ngordnet.hugbrowsermagic.NgordnetQueryHandler;
+import proj2b.ngordnet.hugbrowsermagic.NgordnetQuery;
+import proj2b.ngordnet.hugbrowsermagic.NgordnetQueryHandler;
 
 import java.util.List;
 

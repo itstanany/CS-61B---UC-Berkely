@@ -1,6 +1,7 @@
-package ngordnet.hugbrowsermagic;
+package proj2b.ngordnet.hugbrowsermagic;
 
 import static spark.Spark.*;
+import proj2a.ngordnet.hugbrowsermagic.NgordnetQueryHandler;
 
 /**
  * Created by hug.

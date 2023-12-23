@@ -1,4 +1,4 @@
-package ngordnet.plotting;
+package proj2b.ngordnet.plotting;
 
 import ngordnet.ngrams.TimeSeries;
 import org.knowm.xchart.BitmapEncoder;
