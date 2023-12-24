@@ -1,5 +1,6 @@
 package proj2b.ngordnet.main;
 
+
 import proj2a.ngordnet.main.HistoryHandler;
 import proj2a.ngordnet.main.HistoryTextHandler;
 import proj2a.ngordnet.ngrams.NGramMap;
@@ -15,9 +16,11 @@ public class Main {
         String hyponymFile = "src/data/wordnet/hyponyms.txt";
 
         NGramMap ngm = new NGramMap(wordFile, countFile);
+        WordNet wn = new WordNet(synsetFile, hyponymFile);
 
         hns.startUp();
         hns.register("history", new HistoryHandler(ngm));
         hns.register("historytext", new HistoryTextHandler(ngm));
+        hns.register("hyponyms", new HyponymsHandler(wn, ngm));
     }
 }
